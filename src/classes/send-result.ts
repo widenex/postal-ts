@@ -5,7 +5,7 @@ import { SentMessage } from "../interfaces/sent-message.interface";
 
 export class SendResult {
   private result: SendMessageResult;
-  private _recipients?: { [key: string]: SentMessage };
+  private _recipients: Map<string, SentMessage>;
 
   constructor(
     result: SendMessageResultDto,
@@ -15,26 +15,24 @@ export class SendResult {
       id: result.message_id,
       messages: result.messages,
     };
-  }
 
-  public get recipients(): { [key: string]: SentMessage } {
-    if (!this._recipients) {
-      this._recipients = {};
-      const messages = this.result.messages;
-      for (const key in messages) {
-        if (Object.prototype.hasOwnProperty.call(messages, key)) {
-          this._recipients[key.toLowerCase()] = {
-            ...this.originalMessage,
-            ...messages[key],
-          };
-        }
+    this._recipients = new Map<string, SentMessage>();
+    const messages = this.result.messages;
+    for (const key in messages) {
+      if (Object.prototype.hasOwnProperty.call(messages, key)) {
+        this._recipients.set(key.toLowerCase(), {
+          ...this.originalMessage,
+          ...messages[key],
+        });
       }
     }
+  }
 
+  public get recipients(): Map<string, SentMessage> {
     return this._recipients;
   }
 
   public get size(): number {
-    return Object.keys(this.recipients).length;
+    return this._recipients.size;
   }
 }
