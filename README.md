@@ -30,17 +30,60 @@ import { Client } from "@widenex/postal-ts";
 
 const client = new Client("postal.your-domain.com", "your-server-key");
 
-client
-  .send({
+client.send({
     from: "contact@your-domain.com",
+    to: "someone@their-domain.com",
     subject: "Hello, Postal!",
     body: "This is a simple test email.",
-    to: "someone@their-domain.com",
-  })
-  .then((result) => {
-    console.log(`Emails sent: ${result.size}`);
-    console.log("Recipients:", result.recipients);
   });
+```
+
+You can also use an **html body** just with the *isHtml* label:
+
+```typescript
+client.send({
+    ...
+    body: "<h1>This is an awesome title</h1><p>Followed by a paragraph</p>",
+    isHtml: true,
+  })
+```
+
+Do you have **multiple recipients**? Just use an array:
+
+```typescript
+client.send({
+    to: ["someone1@their-domain.com", "someone2@their-domain.com"],
+    ...
+  })
+```
+
+
+You can also add **cc**, **bcc**, **sender** and **replyTo** fields:
+
+```typescript
+client.send({
+    cc: "cc@their-domain.com",
+    bcc: "bcc@their-domain.com",
+    sender: "i-am-the-sender@your-domain.com",
+    replyTo: "reply-me@your-domain.com",
+    ...
+  })
+```
+
+You can also pass an array for **cc** and **bcc** fields:
+
+```typescript
+client.send({
+    cc: ["cc1@their-domain.com", "cc2@their-domain.com"],
+    bcc: ["bcc1@their-domain.com", "bcc2@their-domain.com"],
+    ...
+  })
+```
+
+The send method returns sent messages with their ids:
+
+```typescript
+const { id, messages } = await client.send(...);
 ```
 
 ## Acknowledgements
@@ -53,7 +96,7 @@ As an open source project, we welcome contributions of all sorts! Whether it's f
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/your-github-repo/blob/main/LICENSE).
+This project is licensed under the [MIT License](https://github.com/widenex/postal-ts/blob/main/LICENSE).
 
 ## Questions? Need Help?
 
