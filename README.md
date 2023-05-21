@@ -12,13 +12,13 @@ This is a friendly and easy-to-use library for interfacing with the open source 
 You can easily install this SDK with **npm**:
 
 ```bash
-npm install @widenex/postal-ts
+npm install postal-ts
 ```
 
 Or with **yarn**:
 
 ```bash
-yarn add @widenex/postal-ts
+yarn add postal-ts
 ```
 
 ## Usage
@@ -26,11 +26,11 @@ yarn add @widenex/postal-ts
 Here's a simple example of how to **send an email** ✉️ with this SDK:
 
 ```typescript
-import { Client } from "@widenex/postal-ts";
+import { Postal } from "postal-ts";
 
-const client = new Client("postal.your-domain.com", "your-server-key");
+const postal = new Postal("postal.your-domain.com", "your-server-key");
 
-client.send({
+postal.send({
     from: "contact@your-domain.com",
     to: "someone@their-domain.com",
     subject: "Hello, Postal!",
@@ -41,7 +41,7 @@ client.send({
 You can also use an **html body** just with the *isHtml* label:
 
 ```typescript
-client.send({
+postal.send({
     ...
     body: "<h1>This is an awesome title</h1><p>Followed by a paragraph</p>",
     isHtml: true,
@@ -51,7 +51,7 @@ client.send({
 Do you have **multiple recipients**? Just use an array:
 
 ```typescript
-client.send({
+postal.send({
     to: ["someone1@their-domain.com", "someone2@their-domain.com"],
     ...
   })
@@ -61,7 +61,7 @@ client.send({
 You can also add **cc**, **bcc**, **sender** and **replyTo** fields:
 
 ```typescript
-client.send({
+postal.send({
     cc: "cc@their-domain.com",
     bcc: "bcc@their-domain.com",
     sender: "i-am-the-sender@your-domain.com",
@@ -73,7 +73,7 @@ client.send({
 You can also pass an array for **cc** and **bcc** fields:
 
 ```typescript
-client.send({
+postal.send({
     cc: ["cc1@their-domain.com", "cc2@their-domain.com"],
     bcc: ["bcc1@their-domain.com", "bcc2@their-domain.com"],
     ...
@@ -83,7 +83,7 @@ client.send({
 The send method returns sent messages with their ids:
 
 ```typescript
-const { id, messages } = await client.send(...);
+const { id, messages } = await postal.send(...);
 ```
 
 ## Acknowledgements

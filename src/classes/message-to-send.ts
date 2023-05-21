@@ -1,14 +1,14 @@
 import { SendResult } from "./send-result";
-import { Client } from "./client";
+import { Postal } from "./postal";
 import { SendMessageDto } from "../dto/send-message.dto";
 import { stringToArray } from "../utils/string-to-array";
 import { MessageInfo } from "../interfaces/message.interface";
 
 export class MessageToSend {
   private messageToSend: SendMessageDto;
-  private client: Client;
+  private client: Postal;
 
-  constructor(client: Client, private message: MessageInfo) {
+  constructor(client: Postal, private message: MessageInfo) {
     this.client = client;
 
     this.messageToSend = {

@@ -3,7 +3,7 @@ import { Transform } from "stream";
 import { MessageToSend } from "./message-to-send";
 import type { MessageInfo } from "../interfaces/message.interface";
 
-export class Client {
+export class Postal {
   public host: string;
   public serverKey: string;
 
