@@ -1,10 +1,11 @@
 {
   "name": "postal-ts",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Typescript SDK for Postal Server, an open source mail delivery platform",
   "author": "Widenex <hello@widenex.com>",
   "publisher": "Widenex",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "keywords": [
     "postal",
@@ -12,6 +13,10 @@
     "mail",
     "sdk"
   ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
   "dependencies": {
     "concat-stream": "^1.5.2",
     "promise": "^7.1.1"
