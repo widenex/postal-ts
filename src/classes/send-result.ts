@@ -1,16 +1,20 @@
 import { SendMessageResultDto } from "../dto/send-message-result.dto";
 import { MessageInfo } from "../interfaces/message.interface";
+import { SendMessageResult } from "../interfaces/send-message-result.interface";
 import { SentMessage } from "../interfaces/sent-message.interface";
 
 export class SendResult {
-  private result: SendMessageResultDto;
+  private result: SendMessageResult;
   private _recipients?: { [key: string]: SentMessage };
 
   constructor(
     result: SendMessageResultDto,
     private originalMessage: MessageInfo
   ) {
-    this.result = result;
+    this.result = {
+      id: result.message_id,
+      messages: result.messages,
+    };
   }
 
   public get recipients(): { [key: string]: SentMessage } {
