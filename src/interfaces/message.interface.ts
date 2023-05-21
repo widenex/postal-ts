@@ -1,7 +1,7 @@
 export interface MessageInfo {
   to: string | string[];
-  cc?: string[];
-  bcc?: string[];
+  cc?: string | string[];
+  bcc?: string | string[];
   from: string;
   sender?: string;
   replyTo?: string;
